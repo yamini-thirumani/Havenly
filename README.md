@@ -45,19 +45,35 @@
 ## 🖼 Screenshots
 
 
+## 🖼 Screenshots
+
 ### 🏠 Homepage
 ![Homepage](./assets/home.png)
 
-### 🗺️ Map Integration
-![Map](./assets/map.png)
+---
 
 ### 🔐 Login Page
-![Login](./assets/auth.png)
-
-### ⭐ Reviews Feature
-![Reviews](./assets/review.png)
+![Login](./assets/login.png)
 
 ---
+
+### 📍 Map Integration
+![Map](./assets/map.png)
+
+---
+
+### 🔎 Search Bar with Filters
+![Search Bar](./assets/searchbar.png)
+
+---
+
+### ➕ New Listing Creation
+![New Listing](./assets/newlisting.png)
+
+---
+
+### 🧭 Navigation Options
+![Navigation](./assets/navOptions.png)
 
 
 ## 🙋‍♀️ About Me

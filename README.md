@@ -24,7 +24,7 @@
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React.js** – Component-based UI
@@ -42,10 +42,9 @@
 
 
 
-## 🖼 Screenshots
+## Screenshots
 
 
-## 🖼 Screenshots
 
 ### 🏠 Homepage
 ![Homepage](./assets/home.png)

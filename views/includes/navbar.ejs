@@ -1,0 +1,113 @@
+<style>
+  /* Navbar styles */
+  .navbar {
+    height: 5rem;
+    background-color: white;
+  }
+  .fa-earth-americas {
+    color: #fe424d;
+    font-size: 2rem;
+  }
+  .brand-text {
+    color: #fe424d;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+  }
+  .nav-link {
+    color: #222222 !important;
+    font-weight: 500;
+    margin-left: 1rem;
+  }
+  .search-box {
+    width: 500px;
+    margin-left: 5rem;
+  }
+  .search-inp {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding: 0.5rem 1rem;
+   
+    font-size: 1rem;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+  .search-inp:focus {
+    border-color: #fe424d;
+    box-shadow: 0 0 0 0.25rem rgba(254, 66, 77, 0.25);
+  }
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: none;
+  }
+  .search-btn:hover {
+    background-color: #fe424d;
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+
+</style>
+
+<nav class="navbar navbar-expand-lg border-bottom sticky-top bg-white">
+  <div class="container-fluid">
+    
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/listings">
+      <i class="fa-solid fa-earth-americas"></i>
+      <span class="brand-text mb-0">Havenly</span>
+    </a>
+
+    <!-- Hamburger menu button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse bg-white p-3" id="navbarSupportedContent">
+      
+      <!-- Center Search Bar -->
+      <div class="mx-auto d-none d-lg-block">
+        <form class="d-flex align-items-center" id="search-form" role="search" method="GET" action="/listings">
+          <div class="input-group search-box">
+            <input type="search" class="form-control search-inp" id="search-input" name="q" placeholder="Search destinations" aria-label="Search">
+            <button class="btn search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: Navigation Links -->
+      <ul class="navbar-nav ms-auto d-flex align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Explore</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Add new Listing</a>
+        </li>
+        <% if(!currUser){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><b>Log In</b></a>
+          </li>
+        <% } %>
+        <% if(currUser){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><b>Log Out</b></a>
+          </li>
+        <% } %>
+      </ul>
+
+    </div>
+  </div>
+</nav>

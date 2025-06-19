@@ -1,0 +1,129 @@
+<% layout("./layouts/boilerplate") %>
+
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+  }
+</style>
+
+<div class="container-fluid px-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 text-center mt-3">
+      <h3><%= listing.title %></h3>
+    </div>
+
+    <div class="col-12 col-md-6 mt-3 mb-2">
+      <div class="card listing-card">
+        <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="List of all images" style="height: 20rem;">
+        <div class="card-body">
+          <p class="mb-2 mt-2"><strong>Owned By:</strong> <i><%= listing.owner.username %></i></p>
+          <p class="mb-3"><%= listing.description %></p>
+          <p class="mb-2"><strong>Price:</strong> ₹<%= listing.price %></p>
+          <p class="mb-2"><strong>City:</strong> <%= listing.location %></p>
+          <p class="mb-2"><strong>Country:</strong> <%= listing.country %></p>
+        </div>
+      </div>
+    </div>
+
+    <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-2 mt-3">
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn btn-dark">Delete</button>
+      </form>
+    </div>
+    <% } %>
+
+    <div class="col-12 col-md-8 mt-4">
+      <% if (currUser) { %>
+      <hr>
+      <h4 class="text-center">Leave a Review</h4>
+      <form method="POST" action="/listings/<%= listing.id %>/reviews" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating.">
+            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>
+
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comment</label>
+          <textarea id="comment" name="review[comment]" class="form-control" rows="5" required></textarea>
+          <div class="invalid-feedback">Please add some comments for Review!</div>
+        </div>
+
+        <button class="btn btn-outline-dark">Submit</button>
+      </form>
+      <% } %>
+    </div>
+
+    <% if (listing.reviews.length > 0) { %>
+    <div class="col-12 mt-5">
+      <h5 class="text-center">All Reviews</h5>
+      <div class="row justify-content-center">
+        <% for (review of listing.reviews) { %>
+        <div class="card col-11 col-md-5 m-2">
+          <div class="card-body">
+            <h5 class="card-title">@<%= review.author.username %></h5>
+            <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+            <p class="card-text"><%= review.comment %></p>
+          </div>
+          <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="m-3">
+            <button class="btn btn-sm btn-dark">Delete</button>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <% } %>
+
+    <div class="col-12 col-md-8 my-5">
+      <h4 class="text-center">Location Map</h4>
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const lat = <%- JSON.stringify(listing.latitude || null) %>;
+    const lng = <%- JSON.stringify(listing.longitude || null) %>;
+    console.log("Map lat/lng:", lat, lng);
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: {
+        version: 8,
+        sources: {
+          osm: {
+            type: 'raster',
+            tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+            tileSize: 256,
+            attribution: '© OpenStreetMap contributors'
+          }
+        },
+        layers: [{
+          id: 'osm',
+          type: 'raster',
+          source: 'osm'
+        }]
+      },
+      center: [lng, lat],
+      zoom: 12
+    });
+
+    new maplibregl.Marker().setLngLat([lng, lat]).addTo(map);
+  });
+</script>

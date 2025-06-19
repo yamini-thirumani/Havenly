@@ -1,7 +1,7 @@
 
 # 🏡 Havenly – Seamless Vacation & Stay Rentals
 
-**Havenly** is a modern, full-stack web platform that connects travelers with unique places to stay. Designed with user experience, security, and reliability in mind, it allows hosts to list properties and guests to find their perfect getaway—all in one place.
+**Havenly** is a modern, full-stack web platform that connects travelers with unique places to stay. Designed with user experience, security, and reliability in mind, it allows hosts to list properties and guests to find their perfect getaway, all in one place.
 
 ---
 
@@ -78,7 +78,7 @@
 
 ## 🙋‍♀️ About Me
 
-👋 Hi! I’m [Yamini Thirumani](https://github.com/yamini-thirumani) — a passionate developer focused on building intuitive, secure, and performance-driven web applications.  
+👋 Hi! I’m [Yamini Thirumani](https://github.com/yamini-thirumani) ,  a passionate developer focused on building intuitive, secure, and performance-driven web applications.  
 This project is part of my journey to create impactful solutions through technology.
 
 ---

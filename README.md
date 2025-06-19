@@ -13,7 +13,7 @@
 
 ---
 
-## 🌟 Key Highlights
+## Key Highlights
 
 - 🌍 **Interactive Map Search:** Browse listings visually using a dynamic map interface.
 - ⭐ **5-Star Review System:** Guests can leave ratings and feedback on properties.
